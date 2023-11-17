@@ -26,4 +26,3 @@ public final class BubbleSortWhileNeeded<T extends Comparable<T>> implements Sor
 // iterates first time to n where is n is the length of items
 // after it sets n to the index of item that has been swapped before 
 // n = item[i]
-m
