@@ -1,5 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +40,14 @@ public class ResultStorer {
 
     public long getTimeTaken() {
         return timeTaken;
+    }
+
+    public static void printCSVHeader() {
+        System.out.println("algorithmName,arraySize,arrayType,shufflePercentage,isInverted,timeTaken");
+    }
+
+    public void printCSV() {
+        System.out.println(algorithmName + "," + arraySize + "," + arrayType + "," + shufflePercentage + "," + isInverted + "," + timeTaken);
     }
 
 }
