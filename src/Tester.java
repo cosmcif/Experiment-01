@@ -21,5 +21,12 @@ public class Tester {
 
 
 
-    
+    // 10 - 100
+    // 101 - 1000
+    // 1001 - 10 000
+    // 10 001  - 50 000
+    // 50 001 - 100 000    
+
+    // for each range take m times 
+    // where m is the 10 
 }
