@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
+    testImplementation 'junit:junit:4.13.1'
+}
+
+test {
+    useJUnitPlatform()
+
+}
+
+group = 'assignment1'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '19'
+}
