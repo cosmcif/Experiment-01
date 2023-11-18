@@ -10,86 +10,85 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
         this.type = type;
     }
 
-    public T[] generateRandomArray(int size) {
+    public T[] generateArray(int size) {
         T[] array = (T[]) java.lang.reflect.Array.newInstance(type, size);
-        Random random = new Random();
-
-        for (int i = 0; i < size; i++) {
-            array[i] = generateRandomValue(random);
-        }
-
-        return array;
-    }
 
 
-    private T generateRandomValue(Random random) {
+
         if (type == Integer.class) {
-            return type.cast(random.nextInt());
-        } else if (type == Double.class) {
-            return type.cast(random.nextDouble());
-        } else if (type == String.class) {
-            return type.cast(generateRandomString(100));
-        } else if (type == Character.class) {
-            String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            int index = random.nextInt(characters.length());
-            return type.cast(characters.charAt(index));
-        } else {
-            System.out.println("Not a supported data type.");
-            return type.cast(0);
+            for (int i=0; i< size; i++) {
+                array[i] = type.cast(i);
+            }
         }
-    }
-
-    /**
-     * Generates a random array of chars within a specified range of length.
-     *
-     * @param length The size of the array.
-     * @return An array of length {@code length} composed of random characters within the length of range [0,
-     *         {@code length}).
-     */
-    private static String generateRandomString(int length) {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder sb = new StringBuilder(length);
-        Random random = new Random();
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(characters.length());
-            sb.append(characters.charAt(index));
+        else if (type == Double.class) {
+            for (int i = 0; i < size; i++ ) {
+                array[i] = type.cast(i + 0.5);
+            }
         }
-
-        return sb.toString();
-    }
-
-    public T[] randomSortLevel(String level, T[] array) {
-        Sorter<T> sorter = new BubbleSortPassPerItem<>();
-
-        switch (level) {
-            case "firstHalf":
-                int firstHalfSize = array.length / 2;
-                T[] firstHalf = Arrays.copyOfRange(array, 0, firstHalfSize);
-                sorter.sort(firstHalf);
-                System.arraycopy(firstHalf, 0, array, 0, firstHalfSize);
-                break;
-
-            case "secondHalf":
-                int secondHalfStart = array.length / 2;
-                T[] secondHalf = Arrays.copyOfRange(array, secondHalfStart, array.length);
-                sorter.sort(secondHalf);
-                System.arraycopy(secondHalf, 0, array, secondHalfStart, secondHalf.length);
-                break;
-
-            case "complete":
-                sorter.sort(array);
-                break;
-
-            case "desorted":
-                Arrays.sort(array, Collections.reverseOrder());
-                break;
-
-            default:
-                // Handle invalid level
-                throw new IllegalArgumentException("Invalid sorting level: " + level);
+        else {
+            System.out.println("Not supported data type YET!");
         }
 
         return array;
     }
+
+
+    public static <T> T[] reverseArray(T[] array) {
+        Collections.reverse(Arrays.asList(array));
+        return array;
+    }
+
+    public static <T>  T[] shuffleArray(T[] array, int level) {
+        int size = array.length;
+        int endIndex = (int) (size * (level / 100.0));
+
+        T[] partArray = Arrays.copyOfRange(array, 0, endIndex);
+        Collections.shuffle(Arrays.asList(partArray));
+
+        System.arraycopy(partArray, 0, array, 0, endIndex);
+        return array;
+    }
+    
+
+
+    // private T[] generateValue(int size) {
+    //     if (type == Integer.class) {
+    //         return type.cast();
+    //     } else if (type == Double.class) {
+    //         return type.cast(random.nextDouble());
+    //     }
+    //     //  else if (type == String.class) {
+    //     //     return type.cast(generateRandomString(100));
+    //     // } else if (type == Character.class) {
+    //     //     String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    //     //     int index = random.nextInt(characters.length());
+    //     //     return type.cast(characters.charAt(index));
+    //     // }
+    //      else {
+    //         System.out.println("Not a supported data type.");
+    //         return type.cast(0);
+    //     }
+    // }
+
+    // /**
+    //  * Generates a random array of chars within a specified range of length.
+    //  *
+    //  * @param length The size of the array.
+    //  * @return An array of length {@code length} composed of random characters within the length of range [0,
+    //  *         {@code length}).
+    //  */
+    // private static String generateRandomString(int length) {
+    //     String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    //     StringBuilder sb = new StringBuilder(length);
+    //     Random random = new Random();
+
+    //     for (int i = 0; i < length; i++) {
+    //         int index = random.nextInt(characters.length());
+    //         sb.append(characters.charAt(index));
+    //     }
+
+    //     return sb.toString();
+    // }
+
+
 }
