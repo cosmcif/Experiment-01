@@ -18,30 +18,6 @@ public class ResultStorer {
         this.timeTaken = timeTaken;
     }
 
-    public String getAlgorithmName() {
-        return algorithmName;
-    }
-
-    public int getArraySize() {
-        return arraySize;
-    }
-
-    public String getArrayType() {
-        return arrayType;
-    }
-
-    public int getShufflePercentage() {
-        return shufflePercentage;
-    }
-
-    public boolean getIsInverted() {
-        return isInverted;
-    }
-
-    public long getTimeTaken() {
-        return timeTaken;
-    }
-
     public static void printCSVHeader() {
         System.out.println("algorithmName,arraySize,arrayType,shufflePercentage,isInverted,timeTaken");
     }
