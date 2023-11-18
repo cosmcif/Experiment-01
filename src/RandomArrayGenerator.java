@@ -1,71 +1,50 @@
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
-/**
- * Class for generate arrays of different:
- *  - Types
- *  - Length
- */
-public class RandomArrayGenerator {
 
+public class RandomArrayGenerator<T extends Comparable<T>> {
 
-    /**
-     * Generates a random array of integers within a specified range.
-     * 
-     * @param size   The size of the array.
-     * @param range  The upper exclusive bound of the range for random integers.
-     * @return       An array of length {@code size} composed of random integers within the range [0, {@code range}).
-     */
-    public static Integer[] generateRandomIntArray(int size, int range) {
-        Integer[] array = new Integer[size];
+    private Class<T> type;
+
+    public RandomArrayGenerator(Class<T> type) {
+        this.type = type;
+    }
+
+    public T[] generateRandomArray(int size) {
+        T[] array = (T[]) java.lang.reflect.Array.newInstance(type, size);
         Random random = new Random();
 
         for (int i = 0; i < size; i++) {
-            array[i] = random.nextInt(range);
+            array[i] = generateRandomValue(random);
         }
 
         return array;
     }
 
 
-    /**
-     * Generates a random array of Double within a specified range.
-     * 
-     * @param size   The size of the array.
-     * @param range  The upper exclusive bound of the range for random Double.
-     * @return       An array of length {@code size} composed of random Double within the range [0.0, {@code range}).
-     */
-    public static Double[] generateRandomDoubleArray(int size, double range) {
-        Double[] array = new Double[size];
-        Random random = new Random();
-
-        for (int i = 0; i < size; i++) {
-            array[i] = random.nextDouble() * range;
+    private T generateRandomValue(Random random) {
+        if (type == Integer.class) {
+            return type.cast(random.nextInt());
+        } else if (type == Double.class) {
+            return type.cast(random.nextDouble());
+        } else if (type == String.class) {
+            return type.cast(generateRandomString(100));
+        } else if (type == Character.class) {
+            String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            int index = random.nextInt(characters.length());
+            return type.cast(characters.charAt(index));
+        } else {
+            System.out.println("Not a supported data type.");
+            return type.cast(0);
         }
-
-        return array;
-    }
-
-    /**
-     * Generates a random array of random Strings within a specified string Length.
-     * 
-     * @param size   The size of the array.
-     * @param stringLength  The upper exclusive bound of the range for random Strings length.
-     * @return       An array of length {@code size} composed of random Strings within the length of range [0, {@code stringLength}).
-     */
-    public static String[] generateRandomStringArray(int size, int stringLength) {
-        String[] array = new String[size];
-
-        for (int i = 0; i < size; i++) {
-            array[i] = generateRandomString(stringLength);
-        }
-
-        return array;
     }
 
     /**
      * Generates a random array of chars within a specified range of length.
-     * 
-     * @param length   The size of the array.
-     * @return       An array of length {@code length} composed of random characters within the length of range [0, {@code length}).
+     *
+     * @param length The size of the array.
+     * @return An array of length {@code length} composed of random characters within the length of range [0,
+     *         {@code length}).
      */
     private static String generateRandomString(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -80,24 +59,37 @@ public class RandomArrayGenerator {
         return sb.toString();
     }
 
+    public T[] randomSortLevel(String level, T[] array) {
+        Sorter<T> sorter = new BubbleSortPassPerItem<>();
 
-    /**
-     * Generates a random array of Booleans within a specified range of size.
-     * 
-     * @param size   The size of the array.
-     * @return       An array of length {@code size} composed of random Boolean values within the length of range [0, {@code size}).
-     */
-    public static Boolean[] generateRandomBooleanArray(int size) {
-        Boolean[] array = new Boolean[size];
-        Random random = new Random();
+        switch (level) {
+            case "firstHalf":
+                int firstHalfSize = array.length / 2;
+                T[] firstHalf = Arrays.copyOfRange(array, 0, firstHalfSize);
+                sorter.sort(firstHalf);
+                System.arraycopy(firstHalf, 0, array, 0, firstHalfSize);
+                break;
 
-        for (int i = 0; i < size; i++) {
-            array[i] = random.nextBoolean();
+            case "secondHalf":
+                int secondHalfStart = array.length / 2;
+                T[] secondHalf = Arrays.copyOfRange(array, secondHalfStart, array.length);
+                sorter.sort(secondHalf);
+                System.arraycopy(secondHalf, 0, array, secondHalfStart, secondHalf.length);
+                break;
+
+            case "complete":
+                sorter.sort(array);
+                break;
+
+            case "desorted":
+                Arrays.sort(array, Collections.reverseOrder());
+                break;
+
+            default:
+                // Handle invalid level
+                throw new IllegalArgumentException("Invalid sorting level: " + level);
         }
 
         return array;
     }
-
-
-    
 }

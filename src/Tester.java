@@ -8,9 +8,6 @@ public class Tester {
 
     public static void main(String[] args) {
 
-
-        int[] sizeParam = {5,10,15,20,30,50,60,75,90,100,200,500,800,1000,1200,1500,2000,3000,4000,5000,7500,10000,12500,15000,17500,20000,25000,30000,35000,40000,45000,50000,60000,75000,90000,100000}
-
         Integer[] integer_array_10_10 = RandomArrayGenerator.generateRandomIntArray(10, 10);
         System.out.println("not sorted int array: " + Arrays.toString(integer_array_10_10));
 
