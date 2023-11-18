@@ -1,5 +1,7 @@
+package assignment1;
+
 /**
- * Person class representing an individual with attributes such as name, age, profession,
+ * assignment1.Person class representing an individual with attributes such as name, age, profession,
  * marital status, and income.
  */
 public class Person {
@@ -11,7 +13,7 @@ public class Person {
     private double income;
 
     /**
-     * Constructs a new Person object with the given attributes.
+     * Constructs a new assignment1.Person object with the given attributes.
      *
      * @param name       The name of the person.
      * @param age        The age of the person.

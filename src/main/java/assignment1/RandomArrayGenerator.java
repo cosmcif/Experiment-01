@@ -1,3 +1,5 @@
+package assignment1;
+
 import java.util.Random;
 /**
  * Class for generate arrays of different:

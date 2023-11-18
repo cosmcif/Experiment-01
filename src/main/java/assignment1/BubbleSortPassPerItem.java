@@ -1,3 +1,4 @@
+package assignment1;
 
 public final class BubbleSortPassPerItem<T extends Comparable<T>> implements Sorter<T> {
 	
