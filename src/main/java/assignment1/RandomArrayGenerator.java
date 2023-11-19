@@ -115,8 +115,9 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
      * @return the reversed array
      */
     public static <T> T[] reverseArray(T[] array) {
-        Collections.reverse(Arrays.asList(array));
-        return array;
+        T[] resultArray = Arrays.copyOf(array, array.length);
+        Collections.reverse(Arrays.asList(resultArray));
+        return resultArray;
     }
 
     /**
@@ -134,7 +135,8 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
         T[] partArray = Arrays.copyOfRange(array, 0, endIndex);
         Collections.shuffle(Arrays.asList(partArray));
 
-        System.arraycopy(partArray, 0, array, 0, endIndex);
-        return array;
+        T[] resultArray = Arrays.copyOf(array, size);
+        System.arraycopy(partArray, 0, resultArray, 0, endIndex);
+        return resultArray;
     }
 }

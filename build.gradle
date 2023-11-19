@@ -12,7 +12,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'assignment1.Main'
+    mainClassName = 'assignment1.Tester'
 }
 
 test {

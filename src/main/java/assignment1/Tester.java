@@ -15,6 +15,7 @@ public class Tester {
         System.out.println("sorted int array: " + Arrays.toString(integerArray_10));
         System.out.println("shuffle int array "+ Arrays.toString(RandomArrayGenerator.shuffleArray(integerArray_10, 50)));
         System.out.println("reversed int array "+ Arrays.toString(RandomArrayGenerator.reverseArray(integerArray_10)));
+        System.out.println("sorted int array: " + Arrays.toString(integerArray_10));
 
 
         RandomArrayGenerator<String> stringRandomArrayGenerator = new RandomArrayGenerator<>(String.class);
