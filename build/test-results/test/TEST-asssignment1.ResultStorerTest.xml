@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="asssignment1.ResultStorerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-11-18T20:11:34" hostname="sofi-Precision-5550" time="0.038">
+  <properties/>
+  <testcase name="testPrintCSV()" classname="asssignment1.ResultStorerTest" time="0.035"/>
+  <testcase name="testPrintCSVHeader()" classname="asssignment1.ResultStorerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
