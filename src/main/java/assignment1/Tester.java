@@ -2,41 +2,53 @@ package assignment1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 public class Tester {
+    static Sorter<Integer> sorter1 = new BubbleSortPassPerItem<>();
+    static Sorter<Integer> sorter2 = new BubbleSortUntilNoChange<>();
+    static Sorter<Integer> sorter3 = new BubbleSortWhileNeeded<>();
 
+    static ArrayList<Sorter<Integer>> sorters = new ArrayList<>(Arrays.asList(sorter1, sorter2, sorter3));
+    static RandomArrayGenerator<Integer> integerGenerator = new RandomArrayGenerator<>(Integer.class);
+    static Range range1 = new Range(10, 100);
+    static Range range2 = new Range(101, 1000);
+    static Range range3 = new Range(1001, 10000);
+    static Range range4 = new Range(10001, 50000);
+    static Range range5 = new Range(50001, 100000);
+    static ArrayList<Range> ranges = new ArrayList<>(Arrays.asList(range1, range2, range3, range4, range5));
 
-    public static void main(String[] args) {
+    public void setupInteger() {
+        int arrayLength = 5;
 
-        RandomArrayGenerator<Integer> integerGenerator = new RandomArrayGenerator<>(Integer.class);
-        Integer[] integerArray_10 = integerGenerator.generateArray(10);
-        System.out.println("sorted int array: " + Arrays.toString(integerArray_10));
-        System.out.println("shuffle int array "+ Arrays.toString(RandomArrayGenerator.shuffleArray(integerArray_10, 50)));
-        System.out.println("reversed int array "+ Arrays.toString(RandomArrayGenerator.reverseArray(integerArray_10)));
-        System.out.println("sorted int array: " + Arrays.toString(integerArray_10));
+        for (Range range : ranges) {
+            int[] sizes = new int[arrayLength];
+            for (int i = 0; i < arrayLength; i++) {
+                sizes[i] = range.randomNumberInRange(); //create random lengths
+            }
+            for (int length : sizes) {
+                Integer[] integerArray = integerGenerator.generateArray(length);
+                //Integer[] integerArrayReversed = RandomArrayGenerator.reverseArray(integerArray);
+                //Integer[] integerArrayShuffled = RandomArrayGenerator.shuffleArray(integerArray, 50);
 
-
-        RandomArrayGenerator<String> stringRandomArrayGenerator = new RandomArrayGenerator<>(String.class);
-        String[] stringArray = stringRandomArrayGenerator.generateArray(10);
-        System.out.println(Arrays.toString(stringArray));
-        Sorter<Integer> sorter1 = new BubbleSortPassPerItem<>();
-        Sorter<Integer> sorter2 = new BubbleSortUntilNoChange<>();
-        Sorter<Integer> sorter3 = new BubbleSortWhileNeeded<>();
-
+                runTestInt(RandomArrayGenerator.reverseArray(integerArray), 100);
+                runTestInt(RandomArrayGenerator.shuffleArray(integerArray, 25), 25);
+                runTestInt(RandomArrayGenerator.shuffleArray(integerArray, 50), 50);
+                runTestInt(RandomArrayGenerator.shuffleArray(integerArray, 75), 75);
+            }
+        }
     }
 
-    //int[]
+    public void runTestInt(Integer[] array, int shuffleLevel) {
 
+        for (Sorter sorter : sorters) {
+            long startTime = System.currentTimeMillis();
+            sorter.sort(array);
+            long endTime = System.currentTimeMillis();
+            long timeTaken = endTime - startTime;
+            boolean isInverseSorted = shuffleLevel == 100;
+            ResultStorer resultStorer = new ResultStorer(sorter.toString(), array.length, "Integer", shuffleLevel, isInverseSorted, timeTaken);
+            resultStorer.printCSV();
+        }
+    }
 
-
-    // 10 - 100
-    // 101 - 1000
-    // 1001 - 10 000
-    // 10 001  - 50 000
-    // 50 001 - 100 000
-
-    // for each range take m times
-    // where m is the 10
 }
