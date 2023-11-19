@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Experiment-01.iml" filepath="$PROJECT_DIR$/.idea/modules/Experiment-01.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Experiment-01.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Experiment-01.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Experiment-01.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Experiment-01.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/IR-project.iml" filepath="$PROJECT_DIR$/IR-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/test/java/java.iml" filepath="$PROJECT_DIR$/src/test/java/java.iml" />
     </modules>
   </component>
