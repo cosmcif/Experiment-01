@@ -7,5 +7,7 @@ public class Main {
         testerInteger.setupInteger(); // returns 100 tests for each algorithm, total 300 tests
         TesterDouble testerDouble = new TesterDouble();
         testerDouble.setupDouble(); // returns 100 tests for each algorithm, total 300 tests
+        TesterString testerString = new TesterString();
+        testerString.setupString(); // returns 100 tests for each algorithm, total 300 tests
     }
 }
