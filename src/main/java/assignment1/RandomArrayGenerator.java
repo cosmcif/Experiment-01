@@ -5,6 +5,7 @@ import java.util.Collections;
 
 import java.util.Random;
 
+
 /**
  * A utility class for generating random arrays of different types.
  *
@@ -12,6 +13,7 @@ import java.util.Random;
  */
 public class RandomArrayGenerator<T extends Comparable<T>> {
 
+    private Random random  = new Random();
     private final Class<T> type;
 
     /**
@@ -42,8 +44,10 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
             }
         } else if (type == String.class) {
             for (int i = 0; i < size; i++) {
-                array[i] = type.cast(generateSortedString(i + 1)); // Adjust the length as needed
+                int n = random.nextInt(1,10) ;
+                array[i] = type.cast(generateSortedStringChars(n));
             }
+            Arrays.sort(array);
         } else {
             System.out.println("Not supported data type YET!");
         }
@@ -77,13 +81,14 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
     private String generateSortedStringChars(int length) {
         char[] chars = new char[length];
         Random random = new Random();
+
         for (int i = 0; i < length; i++) {
             chars[i] = (char) ('A' + random.nextInt(26));
         }
-        // Sort the characters
-        Arrays.sort(chars);
         return new String(chars);
     }
+
+
 
     /**
      * Reverses the order of elements in the given array.
