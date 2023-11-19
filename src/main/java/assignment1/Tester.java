@@ -42,9 +42,9 @@ public class Tester {
     public void runTestInt(Integer[] array, int shuffleLevel) {
         for (Sorter sorter : sorters) {
             Integer[] arrayCopy = Arrays.copyOf(array, array.length);
-            long startTime = System.currentTimeMillis();
+            long startTime = System.nanoTime();
             sorter.sort(arrayCopy);
-            long endTime = System.currentTimeMillis();
+            long endTime = System.nanoTime();
             long timeTaken = endTime - startTime;
             boolean isInverseSorted = shuffleLevel == 100;
             ResultStorer resultStorer = new ResultStorer(sorter.toString(), array.length, "Integer", shuffleLevel, isInverseSorted, timeTaken);
