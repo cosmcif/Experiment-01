@@ -40,12 +40,32 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
             for (int i = 0; i < size; i++) {
                 array[i] = type.cast(i + 0.5);
             }
+        } else if (type == String.class) {
+            for (int i = 0; i < size; i++) {
+                array[i] = type.cast(generateSortedString(i + 1)); // Adjust the length as needed
+            }
         } else {
             System.out.println("Not supported data type YET!");
         }
 
         return array;
     }
+
+
+    /**
+     * Create a random string.
+     *
+     * @param length of the string
+     * @return the string created
+     */
+    private String generateSortedString(int length) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append("A");
+        }
+        return sb.toString();
+    }
+
 
     /**
      * Reverses the order of elements in the given array.
