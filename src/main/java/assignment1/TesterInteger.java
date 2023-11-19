@@ -18,7 +18,6 @@ public class TesterInteger {
     static ArrayList<Range> ranges = new ArrayList<>(Arrays.asList(range1, range2, range3, range4, range5));
 
     public void setupInteger() {
-        ResultStorer.printCSVHeader();
         int arrayLength = 5;
 
         for (Range range : ranges) { // 5 ranges
