@@ -18,6 +18,7 @@ public class Tester {
     static ArrayList<Range> ranges = new ArrayList<>(Arrays.asList(range1, range2, range3, range4, range5));
 
     public void setupInteger() {
+        ResultStorer.printCSVHeader();
         int arrayLength = 5;
 
         for (Range range : ranges) {
@@ -39,10 +40,10 @@ public class Tester {
     }
 
     public void runTestInt(Integer[] array, int shuffleLevel) {
-        ResultStorer.printCSVHeader();
         for (Sorter sorter : sorters) {
+            Integer[] arrayCopy = Arrays.copyOf(array, array.length);
             long startTime = System.currentTimeMillis();
-            sorter.sort(array);
+            sorter.sort(arrayCopy);
             long endTime = System.currentTimeMillis();
             long timeTaken = endTime - startTime;
             boolean isInverseSorted = shuffleLevel == 100;
