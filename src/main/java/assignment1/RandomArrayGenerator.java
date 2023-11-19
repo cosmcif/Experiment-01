@@ -67,6 +67,24 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
     }
 
 
+
+    /**
+     * Create a random string with sorted characters.
+     *
+     * @param length of the string
+     * @return the string created
+     */
+    private String generateSortedStringChars(int length) {
+        char[] chars = new char[length];
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            chars[i] = (char) ('A' + random.nextInt(26));
+        }
+        // Sort the characters
+        Arrays.sort(chars);
+        return new String(chars);
+    }
+
     /**
      * Reverses the order of elements in the given array.
      *
