@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class RandomArrayGenerator<T extends Comparable<T>> {
 
-    private Random random  = new Random();
+    private Random random = new Random();
     private final Class<T> type;
 
     /**
@@ -35,16 +35,35 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
         T[] array = (T[]) java.lang.reflect.Array.newInstance(type, size);
 
         if (type == Integer.class) {
+            Random random = new Random();
+
             for (int i = 0; i < size; i++) {
-                array[i] = type.cast(i);
+                if (i > 0 && random.nextDouble() < 0.2) {
+                    // Introduce some repeated values
+                    array[i] = array[random.nextInt(i)];
+                } else {
+                    array[i] = type.cast(i);
+                }
+                // Ensure the array is sorted up to the current index
+                Arrays.sort(array, 0, i + 1);
             }
         } else if (type == Double.class) {
+            Random random = new Random();
+
             for (int i = 0; i < size; i++) {
-                array[i] = type.cast(i + 0.5);
+                if (i > 0 && random.nextDouble() < 0.2) {
+                    // Introduce some repeated values
+                    array[i] = array[random.nextInt(i)];
+                } else {
+                    array[i] = type.cast(i + 0.5);
+                }
+
+                // Ensure the array is sorted up to the current index
+                Arrays.sort(array, 0, i + 1);
             }
         } else if (type == String.class) {
             for (int i = 0; i < size; i++) {
-                int n = random.nextInt(1,10) ;
+                int n = random.nextInt(1, 10);
                 array[i] = type.cast(generateSortedStringChars(n));
             }
             Arrays.sort(array);
@@ -71,7 +90,6 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
     }
 
 
-
     /**
      * Create a random string with sorted characters.
      *
@@ -87,7 +105,6 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
         }
         return new String(chars);
     }
-
 
 
     /**
