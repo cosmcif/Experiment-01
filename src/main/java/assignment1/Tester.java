@@ -42,7 +42,7 @@ public class Tester {
 
         for (Sorter sorter : sorters) {
             long startTime = System.currentTimeMillis();
-
+            sorter.sort(array);
             long endTime = System.currentTimeMillis();
             long timeTaken = endTime - startTime;
             boolean isInverseSorted = shuffleLevel == 100;
