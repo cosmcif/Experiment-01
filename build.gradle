@@ -1,23 +1,28 @@
 plugins {
     id 'java'
+    id 'application'
 }
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
-    testImplementation 'junit:junit:4.13.1'
+    implementation 'org.junit.jupiter:junit-jupiter:5.8.2'
+}
+
+application {
+    mainClassName = 'assignment1.Tester'
 }
 
 test {
     useJUnitPlatform()
-
 }
 
 group = 'assignment1'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '19'
+    sourceCompatibility = "19"
+    targetCompatibility = "19"
 }
