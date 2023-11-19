@@ -39,7 +39,7 @@ public class Tester {
     }
 
     public void runTestInt(Integer[] array, int shuffleLevel) {
-
+        ResultStorer.printCSVHeader();
         for (Sorter sorter : sorters) {
             long startTime = System.currentTimeMillis();
             sorter.sort(array);
