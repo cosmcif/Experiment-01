@@ -45,7 +45,7 @@ public class RandomArrayGenerator<T extends Comparable<T>> {
                     array[i] = type.cast(i);
                 }
                 // Ensure the array is sorted up to the current index
-                Arrays.sort(array, 0, i + 1);
+//                Arrays.sort(array, 0, i + 1);
             }
         } else if (type == Double.class) {
             Random random = new Random();
