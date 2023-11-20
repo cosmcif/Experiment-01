@@ -3,7 +3,10 @@ package assignment1;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Tester {
+/**
+ * Tester for Integer
+ */
+public class TesterInteger {
     static Sorter<Integer> sorter1 = new BubbleSortPassPerItem<>();
     static Sorter<Integer> sorter2 = new BubbleSortUntilNoChange<>();
     static Sorter<Integer> sorter3 = new BubbleSortWhileNeeded<>();
@@ -17,10 +20,14 @@ public class Tester {
     static Range range5 = new Range(50001, 100000);
     static ArrayList<Range> ranges = new ArrayList<>(Arrays.asList(range1, range2, range3, range4, range5));
 
-    public void setupInteger() {
-        int arrayLength = 5;
 
-        for (Range range : ranges) {
+    /**
+     * Setup the tests for Integer
+     */
+    public void setupInteger() {
+        int arrayLength = 31;
+
+        for (Range range : ranges) { // 5 ranges
             int[] sizes = new int[arrayLength];
             for (int i = 0; i < arrayLength; i++) {
                 sizes[i] = range.randomNumberInRange(); //create random lengths
@@ -30,6 +37,7 @@ public class Tester {
                 //Integer[] integerArrayReversed = RandomArrayGenerator.reverseArray(integerArray);
                 //Integer[] integerArrayShuffled = RandomArrayGenerator.shuffleArray(integerArray, 50);
 
+                // 12 tests
                 runTestInt(RandomArrayGenerator.reverseArray(integerArray), 100);
                 runTestInt(RandomArrayGenerator.shuffleArray(integerArray, 25), 25);
                 runTestInt(RandomArrayGenerator.shuffleArray(integerArray, 50), 50);
@@ -38,12 +46,17 @@ public class Tester {
         }
     }
 
+    /**
+     * Run the tests for Integer
+     * @param array the array to be sorted
+     * @param shuffleLevel the shuffle level of the array
+     */
     public void runTestInt(Integer[] array, int shuffleLevel) {
-
         for (Sorter sorter : sorters) {
-            long startTime = System.currentTimeMillis();
-            sorter.sort(array);
-            long endTime = System.currentTimeMillis();
+            Integer[] arrayCopy = Arrays.copyOf(array, array.length);
+            long startTime = System.nanoTime();
+            sorter.sort(arrayCopy);
+            long endTime = System.nanoTime();
             long timeTaken = endTime - startTime;
             boolean isInverseSorted = shuffleLevel == 100;
             ResultStorer resultStorer = new ResultStorer(sorter.toString(), array.length, "Integer", shuffleLevel, isInverseSorted, timeTaken);

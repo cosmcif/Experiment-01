@@ -18,9 +18,3 @@ public final class BubbleSortPassPerItem<T extends Comparable<T>> implements Sor
 	
 }
 
-
-// a double for loop, outer loop iterates for all the items length
-// inner loop iterates items.length -1
-// compares if the item[i] is greater than the item[i+1] in that case swap it
-// if item[i] is shorter or equal then leave it there 
-// do the swap if neccessary for all the length for length times

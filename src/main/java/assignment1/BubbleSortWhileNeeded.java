@@ -22,8 +22,3 @@ public final class BubbleSortWhileNeeded<T extends Comparable<T>> implements Sor
 	
 }
 
-
-// do the swap when neeeded. Do the swap if itemp[i-1] is longer than item[i]
-// iterates first time to n where is n is the length of items
-// after it sets n to the index of item that has been swapped before 
-// n = item[i]
