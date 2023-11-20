@@ -3,6 +3,9 @@ package assignment1;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Tester for Integer
+ */
 public class TesterInteger {
     static Sorter<Integer> sorter1 = new BubbleSortPassPerItem<>();
     static Sorter<Integer> sorter2 = new BubbleSortUntilNoChange<>();
@@ -17,6 +20,10 @@ public class TesterInteger {
     static Range range5 = new Range(50001, 100000);
     static ArrayList<Range> ranges = new ArrayList<>(Arrays.asList(range1, range2, range3, range4, range5));
 
+
+    /**
+     * Setup the tests for Integer
+     */
     public void setupInteger() {
         int arrayLength = 31;
 
@@ -39,6 +46,11 @@ public class TesterInteger {
         }
     }
 
+    /**
+     * Run the tests for Integer
+     * @param array the array to be sorted
+     * @param shuffleLevel the shuffle level of the array
+     */
     public void runTestInt(Integer[] array, int shuffleLevel) {
         for (Sorter sorter : sorters) {
             Integer[] arrayCopy = Arrays.copyOf(array, array.length);

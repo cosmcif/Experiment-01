@@ -3,6 +3,9 @@ package assignment1;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Tester for Integer
+ */
 public class TesterDouble {
     static Sorter<Double> sorter1 = new BubbleSortPassPerItem<>();
     static Sorter<Double> sorter2 = new BubbleSortUntilNoChange<>();
@@ -17,6 +20,9 @@ public class TesterDouble {
     static Range range5 = new Range(50001, 100000);
     static ArrayList<Range> ranges = new ArrayList<>(Arrays.asList(range1, range2, range3, range4, range5));
 
+    /**
+     * Setup the tests for Double
+     */
     public void setupDouble() {
         int arrayLength = 31;
 
